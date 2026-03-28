@@ -8,7 +8,7 @@ const config = {
     "payload": "eyJkb21haW4iOiJkZW1vLm5leW5hci5jb20ifQ",
     "signature": "MHg3MzIwNmEwOGI5ZWMyMjUzODY5ZWUyNjNlZDE0NjA0N2I4Njc1YTVhMTAxNzZmYWI5OTE5OTU2MjBmYmQ0NWIyN2JjYTZmZjU5ZTk0MGY1MWY3M2Y2ZmUwYjlmZDU2YjRjMmE2Y2VjOTBiYWJlN2U2MTg2YjQ5NjNkYTMyZWNjYjFj"
   },
-  "frame": {
+  "miniapp": {
     "name": "Wownar",
     "version": "1",
     "iconUrl": `${appUrl}/logos/neynar.svg`,
@@ -24,8 +24,8 @@ const config = {
 export async function GET() {
   try {
     return NextResponse.json(config);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error generating metadata:', error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: (error as Error).message }, { status: 500 });
   }
 }
